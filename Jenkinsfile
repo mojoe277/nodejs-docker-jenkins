@@ -10,9 +10,7 @@ pipeline {
             steps {
                 script {
                     echo 'incrementing app version...'
-                    sh 'npm run build:parse-version versions:set \
-                        -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
-                        versions:commit'
+                    sh 'npm run build'
                     def matcher = readFile('package.json') =~ '<version>(.+)</version>'
                     def version = matcher[0][1]
                     env.IMAGE_NAME = "$version-$BUILD_NUMBER"
