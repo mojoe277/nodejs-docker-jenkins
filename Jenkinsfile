@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     echo 'incrementing app version...'
-                    sh 'npm run build-helper:parse-version versions:set \
+                    sh 'npm build-helper:parse-version versions:set \
                         -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
                         versions:commit'
                     def matcher = readFile('package.json') =~ '<version>(.+)</version>'
